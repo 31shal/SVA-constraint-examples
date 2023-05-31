@@ -1,0 +1,19 @@
+
+example 1:
+//constraint address to a range within min amd max value for a operation
+module top();
+begin
+ logic wren,clken,rden;
+ logic [7:0] addr, data;
+ logic clk =0;
+end
+forever #5 clk = ~ clk;
+//constraint address to a range within min amd max value for a operation
+property addrchk(int min, int max);
+@(posedge clk)
+(clken && wren)|->addr > min && addr < max);
+endproperty
+always@(posedge clk)
+addr_chk: assume_property(30,100);
+endmodule
+
